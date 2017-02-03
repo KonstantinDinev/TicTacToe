@@ -1,6 +1,8 @@
 ## TicTacToe Sample Game
 
 You can get a preview here: [Preview](https://konstantindinev.github.io/TicTacToe/)
+<!DOCTYPE html>
+<html>
 <head>
 <style type="text/css">
 .ios_frame{
@@ -46,3 +48,4 @@ You can get a preview here: [Preview](https://konstantindinev.github.io/TicTacTo
 </div>
 
 </body>
+</html>
