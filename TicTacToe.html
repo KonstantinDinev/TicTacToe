@@ -11,7 +11,7 @@
     .tic-tac {
         width: 80px;
         height: 80px;
-        background-color: purple;
+        background-color: orange;
         color: white;
         display: inline-block;
         margin-bottom: -3px;
@@ -92,7 +92,6 @@
     }
 
     function checkForWinner(array) {
-
     //check horizontal
         if (array[0] + array[1] + array[2] == "XXX") alert("winner"); if (array[0] + array[1] + array[2] == "OOO") alert("winner");
         if (array[3] + array[4] + array[5] == "XXX") alert("winner"); if (array[3] + array[4] + array[5] == "OOO") alert("winner");
@@ -104,7 +103,6 @@
 	//check diagonals
         if (array[0] + array[4] + array[8] == "XXX") alert("winner"); if (array[0] + array[4] + array[8] == "OOO") alert("winner");
         if (array[2] + array[4] + array[6] == "XXX") alert("winner"); if (array[2] + array[4] + array[6] == "OOO") alert("winner");
-
     //check if Draw
     }
 });
