@@ -1,7 +1,7 @@
 ## TicTacToe Sample Game
 
 You can get a preview here: [Preview](https://konstantindinev.github.io/TicTacToe/)
-
+<head>
 <style type="text/css">
 .ios_frame{
   display: inline-block;
@@ -32,6 +32,9 @@ You can get a preview here: [Preview](https://konstantindinev.github.io/TicTacTo
   background-image: url('device_android.png');
 }
 </style>
+</head>
+
+<body>
 
 <div>
   <div class="ios_frame">
@@ -41,3 +44,5 @@ You can get a preview here: [Preview](https://konstantindinev.github.io/TicTacTo
     <iframe class="iFrameSize" src="https://konstantindinev.github.io/TicTacToe/" scrolling="no"></iframe>
   </div>
 </div>
+
+</body>
