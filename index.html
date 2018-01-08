@@ -51,34 +51,37 @@
     table += "</div>";
 	$("#tic-tac-toe").html(table);
     
+    var win = false;
+    var noWinner = 0;
     var count = 0;
     var vectorRecords = [];
+
     //cross
     $(".tic-tac").click(function() {
         table += "<br />";
 
         if(count % 2 == 0) {
-            if(($(this).text() == "X") || ($(this).text() == "O")){
+            if(($(this).text() == "X") || ($(this).text() == "O")) {
                 alert("You can't click here! " + $(this).text());
             }
             else{
-            $(this).text("X");
-            $("#playerField").html("<b>Player 2 Turn</b>");
-            count++;
-            fillArray(vectorRecords);
-            console.log(vectorRecords);
+                $(this).text("X");
+                $("#playerField").html("<b>Player 2 Turn</b>");
+                count++;
+                fillArray(vectorRecords);
+                console.log(vectorRecords);
             }
         }
 
         else if(count % 2 != 0) {
-            if(($(this).text() != "X") && ($(this).text() != "O")){
-            $(this).text("O");
-            count++;
-            fillArray(vectorRecords);
-            console.log(vectorRecords);
-            $("#playerField").html("<b>Player 1 Turn</b>");
+            if(($(this).text() != "X") && ($(this).text() != "O")) {
+                $(this).text("O");
+                count++;
+                fillArray(vectorRecords);
+                console.log(vectorRecords);
+                $("#playerField").html("<b>Player 1 Turn</b>");
             }
-            else{
+            else {
                 alert("You can't click here! " + $(this).text());
             }
         }
@@ -92,18 +95,22 @@
     }
 
     function checkForWinner(array) {
-    //check horizontal
-        if (array[0] + array[1] + array[2] == "XXX") alert("winner"); if (array[0] + array[1] + array[2] == "OOO") alert("winner");
-        if (array[3] + array[4] + array[5] == "XXX") alert("winner"); if (array[3] + array[4] + array[5] == "OOO") alert("winner");
-        if (array[6] + array[7] + array[8] == "XXX") alert("winner"); if (array[6] + array[7] + array[8] == "OOO") alert("winner");
-	//check vertical
-        if (array[0] + array[3] + array[6] == "XXX") alert("winner"); if (array[0] + array[3] + array[6] == "OOO") alert("winner");
-        if (array[1] + array[4] + array[7] == "XXX") alert("winner"); if (array[1] + array[4] + array[7] == "OOO") alert("winner");
-        if (array[2] + array[5] + array[8] == "XXX") alert("winner"); if (array[2] + array[5] + array[8] == "OOO") alert("winner");
-	//check diagonals
-        if (array[0] + array[4] + array[8] == "XXX") alert("winner"); if (array[0] + array[4] + array[8] == "OOO") alert("winner");
-        if (array[2] + array[4] + array[6] == "XXX") alert("winner"); if (array[2] + array[4] + array[6] == "OOO") alert("winner");
-    //check if Draw
+        //check horizontal
+        if (array[0] + array[1] + array[2] == "XXX") {alert("winner"); win = true;} if (array[0] + array[1] + array[2] == "OOO") {alert("winner"); win = true;}
+        if (array[3] + array[4] + array[5] == "XXX") {alert("winner"); win = true;} if (array[3] + array[4] + array[5] == "OOO") {alert("winner"); win = true;}
+        if (array[6] + array[7] + array[8] == "XXX") {alert("winner"); win = true;} if (array[6] + array[7] + array[8] == "OOO") {alert("winner"); win = true;}
+	   //check vertical
+        if (array[0] + array[3] + array[6] == "XXX") {alert("winner"); win = true;} if (array[0] + array[3] + array[6] == "OOO") {alert("winner"); win = true;}
+        if (array[1] + array[4] + array[7] == "XXX") {alert("winner"); win = true;} if (array[1] + array[4] + array[7] == "OOO") {alert("winner"); win = true;}
+        if (array[2] + array[5] + array[8] == "XXX") {alert("winner"); win = true;} if (array[2] + array[5] + array[8] == "OOO") {alert("winner"); win = true;}
+	   //check diagonals
+        if (array[0] + array[4] + array[8] == "XXX") {alert("winner"); win = true;} if (array[0] + array[4] + array[8] == "OOO") {alert("winner"); win = true;}
+        if (array[2] + array[4] + array[6] == "XXX") {alert("winner"); win = true;} if (array[2] + array[4] + array[6] == "OOO") {alert("winner"); win = true;}
+        //check if Draw
+        if (noWinner == 8 && win == false) {
+            alert("Draw");
+        }
+        noWinner++;
     }
 });
 
