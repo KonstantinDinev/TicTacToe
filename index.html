@@ -1,51 +1,127 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Working with iFrames</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="refresh" content="0;URL=/iFrameTest/iFrameTest.html">
+    <script src="jquery-3.1.1.min.js"></script>
+    
+    <style type="text/css">
+    .tic-tac {
+        width: 80px;
+        height: 80px;
+        background-color: orange;
+        color: white;
+        display: inline-block;
+        margin-bottom: -3px;
+        text-align: center;
+        font-size: 34pt;
+        padding-top: 20px;
+        border: 1px solid white;
+    }
+    .center {
+        width:250px;
+        margin:0 auto;
+    }
+    </style>
+    
+    <script>
+    $(document).ready(function() {
+    
+    var myArray = new Array(3);
+    for(var i = 0; i < 3; i++) {
+        myArray[i] = new Array(3);
+    }
+    
+    //input
+    for(var i = 0; i < 3; i++) {
+        for(var j = 0; j < 3; j++) {
+            myArray[i][j] = '<div class="tic-tac">&nbsp;</div>';
+        }
+    }
+    //output
+    var table = "<div class='center'>";
+    for(var i = 0; i < 3; i++) {
+        for(var j = 0; j < 3; j++) {
+            table += myArray[i][j];
+            myArray[i][j] = ""; //wipe
+        }
+    }
+    table += "</div>";
+	$("#tic-tac-toe").html(table);
+    
+    var win = false;
+    var noWinner = 0;
+    var count = 0;
+    var vectorRecords = [];
 
-<style type="text/css">
-.ios_frame{
-  display: inline-block;
-  box-sizing: border-box;
-  background-size: contain;
-  width: 350px;
-  height: 705px;
-  padding: 78px 19px 78px 19px;
-  vertical-align: middle;
-  margin-bottom: 30px;
-  margin-right: 15px;
-  background-image: url('device_ios.png');
-}
-.iFrameSize{
-  width: 100%;
-  height: 97%;
-  box-shadow: 0px 0px 1px 1px;
-}
-.android_frame{
-  display: inline-block;
-  box-sizing: border-box;
-  background-size: contain;
-  width: 350px;
-  height: 700px;
-  padding: 61px 13px 56px 11px;
-  vertical-align: middle;
-  margin-bottom: 30px;
-  background-image: url('device_android.png');
-}
-</style>
+    //cross
+    $(".tic-tac").click(function() {
+        table += "<br />";
 
+        if(count % 2 == 0) {
+            if(($(this).text() == "X") || ($(this).text() == "O")) {
+                alert("You can't click here! " + $(this).text());
+            }
+            else{
+                $(this).text("X");
+                $("#playerField").html("<b>Player 2 Turn</b>");
+                count++;
+                fillArray(vectorRecords);
+                console.log(vectorRecords);
+            }
+        }
+
+        else if(count % 2 != 0) {
+            if(($(this).text() != "X") && ($(this).text() != "O")) {
+                $(this).text("O");
+                count++;
+                fillArray(vectorRecords);
+                console.log(vectorRecords);
+                $("#playerField").html("<b>Player 1 Turn</b>");
+            }
+            else {
+                alert("You can't click here! " + $(this).text());
+            }
+        }
+    });
+          
+    function fillArray(array){
+        $(".tic-tac").each(function(i){
+            array[i] = $(this).text();
+        });
+        checkForWinner(array);
+    }
+
+    function checkForWinner(array) {
+        //check horizontal
+        if (array[0] + array[1] + array[2] == "XXX") {alert("winner"); win = true;} if (array[0] + array[1] + array[2] == "OOO") {alert("winner"); win = true;}
+        if (array[3] + array[4] + array[5] == "XXX") {alert("winner"); win = true;} if (array[3] + array[4] + array[5] == "OOO") {alert("winner"); win = true;}
+        if (array[6] + array[7] + array[8] == "XXX") {alert("winner"); win = true;} if (array[6] + array[7] + array[8] == "OOO") {alert("winner"); win = true;}
+	   //check vertical
+        if (array[0] + array[3] + array[6] == "XXX") {alert("winner"); win = true;} if (array[0] + array[3] + array[6] == "OOO") {alert("winner"); win = true;}
+        if (array[1] + array[4] + array[7] == "XXX") {alert("winner"); win = true;} if (array[1] + array[4] + array[7] == "OOO") {alert("winner"); win = true;}
+        if (array[2] + array[5] + array[8] == "XXX") {alert("winner"); win = true;} if (array[2] + array[5] + array[8] == "OOO") {alert("winner"); win = true;}
+	   //check diagonals
+        if (array[0] + array[4] + array[8] == "XXX") {alert("winner"); win = true;} if (array[0] + array[4] + array[8] == "OOO") {alert("winner"); win = true;}
+        if (array[2] + array[4] + array[6] == "XXX") {alert("winner"); win = true;} if (array[2] + array[4] + array[6] == "OOO") {alert("winner"); win = true;}
+        //check if Draw
+        if (noWinner == 8 && win == false) {
+            alert("Draw");
+        }
+        noWinner++;
+    }
+});
+
+    </script>
 </head>
+<body>
 
-<body> 
-
-<div>
-  <div class="ios_frame">
-    <iframe class="iFrameSize" src="https://konstantindinev.github.io/TicTacToe/" scrolling="no"></iframe>
-  </div>
-  <div class="android_frame">
-    <iframe class="iFrameSize" src="https://konstantindinev.github.io/TicTacToe/" scrolling="no"></iframe>
-  </div>
-</div>
-
+<div class="center">Index page</div>
+    
+    <p id="playerField" class="center"><b>Player 1 Turn</b></p>
+    <div class="center"><p id="tic-tac-toe">tic</p></div>
+   
 </body>
 </html>
