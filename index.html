@@ -27,23 +27,23 @@
     </style>
     
     <script>
-    $(document).ready(function() {
+$(document).ready(function() {
     
     var myArray = new Array(3);
-    for(var i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         myArray[i] = new Array(3);
     }
     
     //input
-    for(var i = 0; i < 3; i++) {
-        for(var j = 0; j < 3; j++) {
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
             myArray[i][j] = '<div class="tic-tac">&nbsp;</div>';
         }
     }
     //output
     var table = "<div class='center'>";
-    for(var i = 0; i < 3; i++) {
-        for(var j = 0; j < 3; j++) {
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
             table += myArray[i][j];
             myArray[i][j] = ""; //wipe
         }
@@ -57,28 +57,28 @@
     $(".tic-tac").click(function() {
         table += "<br />";
 
-        if(count % 2 == 0) {
-            if(($(this).text() == "X") || ($(this).text() == "O")){
+        if (count % 2 == 0) {
+            if (($(this).text() == "X") || ($(this).text() == "O")) {
                 alert("You can't click here! " + $(this).text());
             }
-            else{
-            $(this).text("X");
-            $("#playerField").html("<b>Player 2 Turn</b>");
-            count++;
-            fillArray(vectorRecords);
-            console.log(vectorRecords);
+            else {
+                $(this).text("X");
+                $("#playerField").html("<b>Player 2 Turn</b>");
+                count++;
+                fillArray(vectorRecords);
+                console.log(vectorRecords);
             }
         }
 
-        else if(count % 2 != 0) {
-            if(($(this).text() != "X") && ($(this).text() != "O")){
-            $(this).text("O");
-            count++;
-            fillArray(vectorRecords);
-            console.log(vectorRecords);
-            $("#playerField").html("<b>Player 1 Turn</b>");
+        else if (count % 2 != 0) {
+            if (($(this).text() != "X") && ($(this).text() != "O")) {
+                $(this).text("O");
+                count++;
+                fillArray(vectorRecords);
+                console.log(vectorRecords);
+                $("#playerField").html("<b>Player 1 Turn</b>");
             }
-            else{
+            else {
                 alert("You can't click here! " + $(this).text());
             }
         }
@@ -111,7 +111,7 @@
 </head>
 <body>
 
-<div class="center">Index page</div>
+<div class="center">TicTacToe</div>
     
     <p id="playerField" class="center"><b>Player 1 Turn</b></p>
     <div class="center"><p id="tic-tac-toe">tic</p></div>
