@@ -39,6 +39,7 @@ $(document).ready(function() {
             myArray[i][j] = '<div class="tic-tac">&nbsp;</div>';
         }
     }
+
     //output
     var table = "<div class='center'>";
     for (var i = 0; i < 3; i++) {
@@ -47,11 +48,12 @@ $(document).ready(function() {
             myArray[i][j] = ""; //wipe
         }
     }
+
     table += "</div>";
 	$("#tic-tac-toe").html(table);
     
     var win = false;
-    var noWinner = 0;
+    var draw = 0;
     var count = 0;
     var vectorRecords = [];
 
@@ -59,19 +61,11 @@ $(document).ready(function() {
     $(".tic-tac").click(function() {
         table += "<br />";
 
-<<<<<<< HEAD
-        if(count % 2 == 0) {
-            if(($(this).text() == "X") || ($(this).text() == "O")) {
-                alert("You can't click here! " + $(this).text());
-            }
-            else{
-=======
         if (count % 2 == 0) {
             if (($(this).text() == "X") || ($(this).text() == "O")) {
                 alert("You can't click here! " + $(this).text());
             }
             else {
->>>>>>> affc96a... proper indentation
                 $(this).text("X");
                 $("#playerField").html("<b>Player 2 Turn</b>");
                 count++;
@@ -80,13 +74,8 @@ $(document).ready(function() {
             }
         }
 
-<<<<<<< HEAD
-        else if(count % 2 != 0) {
-            if(($(this).text() != "X") && ($(this).text() != "O")) {
-=======
         else if (count % 2 != 0) {
             if (($(this).text() != "X") && ($(this).text() != "O")) {
->>>>>>> affc96a... proper indentation
                 $(this).text("O");
                 count++;
                 fillArray(vectorRecords);
@@ -97,9 +86,10 @@ $(document).ready(function() {
                 alert("You can't click here! " + $(this).text());
             }
         }
+
     });
           
-    function fillArray(array){
+    function fillArray(array) {
         $(".tic-tac").each(function(i){
             array[i] = $(this).text();
         });
@@ -119,11 +109,12 @@ $(document).ready(function() {
         if (array[0] + array[4] + array[8] == "XXX") {alert("winner"); win = true;} if (array[0] + array[4] + array[8] == "OOO") {alert("winner"); win = true;}
         if (array[2] + array[4] + array[6] == "XXX") {alert("winner"); win = true;} if (array[2] + array[4] + array[6] == "OOO") {alert("winner"); win = true;}
         //check if Draw
-        if (noWinner == 8 && win == false) {
+        if (draw == 8 && win == false) {
             alert("Draw");
         }
-        noWinner++;
+        draw++;
     }
+    
 });
 
     </script>
